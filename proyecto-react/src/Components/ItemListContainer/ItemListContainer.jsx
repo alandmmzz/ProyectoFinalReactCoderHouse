@@ -1,16 +1,36 @@
-import React from "react";
+import { useState, useEffect } from 'react';
 import './ItemListContainer.css'
+import ItemList from '../ItemList/ItemList.jsx';
+import { useParams } from 'react-router-dom';
+import ProductsJson from '../../JSON/Products.json'
 
-const ItemListContainer = ({greeting}) => {
-    return (
-        <div class="itemList d-flex align-items-center">
-            <div class="greeting fw-bold text-center">
-                {greeting}
-            </div>
-    </div>
-        
-    )
+function asyncMock(categoryId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(categoryId === undefined) {
+                resolve(ProductsJson);
+             } else {
+                const filterProducts = ProductsJson.filter((item) => {
+                    return item.category === categoryId
+                })
+                resolve(filterProducts)
+             }
+        }, 2000);
+    })
 }
 
+export default function ItemListContainer({greeting}){
 
-export default ItemListContainer;
+const { categoryId } = useParams()
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+   asyncMock(categoryId).then((res) => setProducts(res));
+}, [categoryId]);
+
+    return (
+        <div class="itemList m-3">
+                <ItemList productos={products} />
+        </div>  
+    )
+}

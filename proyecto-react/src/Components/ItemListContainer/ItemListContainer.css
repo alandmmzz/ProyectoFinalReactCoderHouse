@@ -1,14 +1,4 @@
 .itemList {
-    width: 700px;
-    height: 400px;
-    position: relative;
-    left: 50%;
-  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/011/665/669/small_2x/realistic-burning-fire-flames-burning-hot-sparks-realistic-fire-flame-fire-flames-effect-png.png);
-  background-size: 100% 100%;
-}
-
-.greeting {
-    font-size: 4.5rem;
-    color: white;
-    mix-blend-mode:difference
+    margin-top: 120px;
+    width: screen;
 }

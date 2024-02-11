@@ -1,0 +1,77 @@
+[
+    {
+        "id": 1,
+        "title": "Gorro Vans Hankley Bucket - Negro",
+        "price": 1790,
+        "description": "Para un accesorio fácil de usar que eleva cualquier atuendo, no busque más que el sombrero de pescador Hankley.",
+        "category": "gorros",
+        "image": "https://f.fcdn.app/imgs/24c1d2/www.inboxstore.com.uy/inbouy/cf00/original/catalogo/VN0A3ILLBLK_1397_1/1500-1500/gorro-vans-hankley-bucket-negro.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Gorra adidas Daily",
+        "price": 750,
+        "description": "Sencilla y deportiva, esta gorra de cierre trasero está confeccionada en sarga de algodón para un look y tacto informales.",
+        "category": "gorros",
+        "image": "https://www.digitalsport.com.ar/files/products/5efa36cecf015-493030-500x500.jpg"
+
+    },
+    {
+        "id": 3,
+        "title": "Cadena de acero quirurgico",
+        "price": 499,
+        "description": "Cadena Hombre Collar Cubana Acero Quirurgico.",
+        "category": "accesorios",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_913671-MLA72624131459_112023-O.webp"
+
+    },
+    {
+        "id": 4,
+        "title": "Gafas sol y luna vintage",
+        "price": 650,
+        "description": "Gafas de sol de lujo con diseño de Sol y Luna sin montura con ondas, de Metal, estilo Vintage, con espejo.",
+        "category": "lentes",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/51hsewGI4OL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Gafas fuego vintage",
+        "price": 750,
+        "description": "Novedosos lentes de sol están diseñados en forma de llama.",
+        "category": "lentes",
+        "image": "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/9f79c990-daaa-4958-8c33-804a1864b94e.8b6553933e9d367af8ee53ae7d0197ec.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+    },
+    {
+        "id": 6,
+        "title": "Gafas drip vintage",
+        "price": 750,
+        "description": "Novedosos lentes de sol en forma de goteado.",
+        "category": "lentes",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_819487-CBT73415656126_122023-O.webp"
+    },
+    {
+        "id": 7,
+        "title": "Gafas murciélago vintage",
+        "price": 750,
+        "description": "Novedosos lentes de sol en forma de murciélago.",
+        "category": "lentes",
+        "image": "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/b2ba342d-b900-4e69-874a-bbf0ee122cde.fd3c39d931cadab14d6dddc6b6658c60.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+    },
+    {
+        "id": 8,
+        "title": "Gorro Volcom Bucket",
+        "price": 980,
+        "description": "Este sombrero de pescador reversible le dará un toque salvaje a tu estilo.",
+        "category": "gorros",
+        "image": "https://f.fcdn.app/imgs/f33a28/www.inboxstore.com.uy/inbouy/8183/original/catalogo/VOD5502107_8515_1/2000-2000/gorro-volcom-bucket-azul.jpg"
+
+    },
+    {
+        "id": 9,
+        "title": "Cadena de acero quirurgico",
+        "price": 1200,
+        "description": "Collar De Hip-hop Cadena De Cuello Cubano",
+        "category": "accesorios",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_963976-CBT73369138281_122023-O.webp"
+    }
+]
