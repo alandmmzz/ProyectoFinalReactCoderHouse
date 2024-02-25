@@ -3,10 +3,12 @@ import './App.css'
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 import NavBar from './Components/NavBar/NavBar'
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer'
+import { CartProvider } from './context/CartContext'
 
 export default function App() {
   return (
     <>
+    <CartProvider>
       <BrowserRouter>
       <NavBar/>
         <Routes>
@@ -21,6 +23,7 @@ export default function App() {
           } />
         </Routes>
       </BrowserRouter>
+      </CartProvider>
     </>
   )
 }

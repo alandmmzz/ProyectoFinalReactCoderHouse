@@ -29,7 +29,7 @@ useEffect(() => {
 }, [categoryId]);
 
     return (
-        <div class="itemList m-3">
+        <div className="itemList d-flex flex-wrap justify-content-evenly m-3">
                 <ItemList productos={products} />
         </div>  
     )

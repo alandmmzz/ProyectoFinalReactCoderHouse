@@ -6,7 +6,7 @@ export default function Item({producto}) {
 
     return (
         <div class="CardContainer d-flex justify-content-center w-100">
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem', height: "500px"}}>
             <Link to={`/item/${producto.id}`} className="text-reset">
                 <Card.Img variant="top" src={producto.image} />
                 <Card.Body>
