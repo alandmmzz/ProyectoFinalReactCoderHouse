@@ -6,9 +6,26 @@ export function CartProvider({children}) {
 
     const [cart, setCart] = useState([])
 
-    function addItem(item, quantity) {
-        setCart([...cart, {...item, quantity}])
+    function isInCart(id) {
+        const result = cart.find((item) => item.id == id)
+        return (
+            result == undefined? false : true
+        )
     }
 
-    return <CartContext.Provider value={[cart, addItem]}>{children}</CartContext.Provider>
+    function removeItem(id) {
+        const result = cart.find((item) => item.id == id);
+        setCart(cart.splice(cart.indexOf(result), 1))
+    }
+
+    function addItem(item, quantity) {
+        if (isInCart(item.id)) {
+            removeItem(item.id);
+            setCart([...cart, {...item, quantity}])
+        } else {
+            setCart([...cart, {...item, quantity}]);
+        }
+    }
+
+    return <CartContext.Provider value={{cart, addItem, removeItem, isInCart}}>{children}</CartContext.Provider>
 }
