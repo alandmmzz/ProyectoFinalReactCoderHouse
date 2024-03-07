@@ -63,7 +63,7 @@ export default function Cart() {
                     <ListGroup.Item>
                         <Link to={`/checkout`} className="text-reset d-flex justify-content-center">
                             <button type="button" className="btn btn-dark position-relative rounded-pill mt-2">
-                                <span >Finalizar compra</span>
+                                <span>Finalizar compra</span>
                             </button>
                         </Link>
                     </ListGroup.Item>
