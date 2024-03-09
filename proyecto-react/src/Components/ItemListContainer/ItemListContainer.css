@@ -1,3 +1,14 @@
-.itemList {
-    margin-top: 120px;
+.background {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,225,245,1) 85%, rgba(255,255,255,1) 100%);
+}
+
+
+@font-face {
+  font-family: "Courage";
+  src: url(../../assets/fonts/courage.otf);
+}
+
+.courage {
+  font-family: "Courage";
 }

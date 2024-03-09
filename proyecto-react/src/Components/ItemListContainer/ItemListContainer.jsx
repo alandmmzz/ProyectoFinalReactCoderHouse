@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './ItemListContainer.css'
-import ItemList from '../ItemList/ItemList.jsx';
+import ItemList from './ItemList/ItemList.jsx';
 import { useParams } from 'react-router-dom';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import Banners from '../Banners/Banners.jsx';
 
 
 export default function ItemListContainer({greeting}){
@@ -10,6 +11,17 @@ export default function ItemListContainer({greeting}){
     const { categoryId } = useParams()
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
+
+    function bannersDisplay() {
+        if (categoryId === undefined){
+            return (<>
+                        <Banners/>
+                        <h1 className='courage mt-5 ms-5'>LAS OFERTAS MÄS FLAMA ESTÁN ACÁ:</h1>
+                    </>)
+        } else {
+            return (<h1 className='courage text-uppercase mt-5 ms-5'>{categoryId}</h1>)
+        }
+    }
 
     useEffect(() => {
         const db = getFirestore();
@@ -62,8 +74,13 @@ export default function ItemListContainer({greeting}){
     }, [categoryId]);
     
     return (
-        <div className="itemList d-flex flex-wrap justify-content-evenly m-3">
-                <ItemList productos={products} />
-        </div>  
+        <>
+        <div className='background p-0 m-0'>
+            {bannersDisplay()}
+            <div className="d-flex flex-wrap justify-content-evenly m-5 ms-4 me-4">
+                    <ItemList productos={products} />
+            </div>
+        </div> 
+        </>
     )
 }

@@ -1,6 +1,11 @@
+@font-face {
+  font-family: "Royal Inferno";
+  src: url(../../assets/royalinferno.ttf);
+}
+
 #root {
   margin: 0;
-  margin-top: 55px;
+  margin-top: 100px;
   padding: 0;
   width: 100%;
 }
@@ -8,4 +13,3 @@
 a.active{
     text-shadow: 1px 1px 15px #646464;
 }
-
