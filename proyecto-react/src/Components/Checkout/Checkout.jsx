@@ -1,43 +1,63 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { useNavigate } from "react-router-dom";
+
+import { addDoc, collection, getFirestore, serverTimestamp } from 'firebase/firestore';
+
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Link, useNavigate } from "react-router-dom";
+
+import Swal from 'sweetalert2'
+
 import "./Checkout.css";
-import { ValidateCheckout } from '../../utils/Validations';
 
 export default function Checkout() {
+    const { cart, clearCart } = useContext(CartContext);
     const [validated, setValidated] = useState(false);
-
-    // const [nameErrorMessage, setNameErrorMessage] = useState("Por favor introduce tu nombre.");
 
     const navigator = useNavigate();
 
     const nameInputRef = useRef("");
+    const phoneInputRef = useRef("");
+    const emailInputRef = useRef("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
-        const order = { name: nameInputRef.current.value }
-        if (!ValidateCheckout(order)) {
-            console.log("El nombre debe tener entre 2 y 42");
+
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
         } else {
-            console.log("Orden generada");
+            const order = {
+                buyer: {
+                    name: nameInputRef.current.value,
+                    phone: phoneInputRef.current.value,
+                    email: emailInputRef.current.value
+                },
+                items: cart.map(product => ({
+                    id: product.id,
+                    title: product.title,
+                    quantity: product.quantity,
+                    price: product.price
+                })),
+                date: serverTimestamp(),
+                total: cart.reduce((total, product) => total + (product.price * product.quantity), 0)
+            }
+            const db = getFirestore();
+            const ordersCollection = collection(db, 'orders')
+            addDoc(ordersCollection, order).then(({ id }) => Swal.fire({
+                title: "Gracias por elegirnos!",
+                text: `Tu ID de compra es: ${id}`,
+                icon: "success"
+            }));
+            clearCart();
             navigator("/");
         }
-
-
         setValidated(true);
     };
-
-    function generateOrder() {
-
-    }
 
     return (
         <div className='container'>
@@ -45,21 +65,21 @@ export default function Checkout() {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="4" controlId="validationName">
                         <Form.Label>Tu nombre:</Form.Label>
-                        <Form.Control required type="text" placeholder="Nombre" ref={nameInputRef} />
+                        <Form.Control required type="text" placeholder="Nombre" ref={nameInputRef} pattern="^.{2,42}$" />
                         <Form.Control.Feedback type="invalid">
-                            Por favor introduce tu nombre.
+                            Introduce un nombre válido.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationNumber">
                         <Form.Label>Tu número de celular:</Form.Label>
-                        <Form.Control required type="number" placeholder="Celular" />
+                        <Form.Control required type="number" placeholder="Celular" ref={phoneInputRef} pattern="^\d{10}$" />
                         <Form.Control.Feedback type="invalid">
-                            Por favor introduce tu número de celular.
+                            Introduce un número válido (10 dígitos).
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationEmail">
                         <Form.Label>Tu dirección de email:</Form.Label>
-                        <Form.Control required type="email" placeholder="Email" />
+                        <Form.Control required type="email" placeholder="Email" ref={emailInputRef} pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
                         <Form.Control.Feedback type="invalid">
                             El mail ingresado no es correcto.
                         </Form.Control.Feedback>
@@ -70,21 +90,21 @@ export default function Checkout() {
                         <Form.Label>País:</Form.Label>
                         <Form.Control type="text" placeholder="País" required />
                         <Form.Control.Feedback type="invalid">
-                            Por favor introduce tu país.
+                            Introduce tu país.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationCity">
                         <Form.Label>Ciudad:</Form.Label>
                         <Form.Control type="text" placeholder="Ciudad" required />
                         <Form.Control.Feedback type="invalid">
-                            Por favor introduce tu ciudad.
+                            Introduce tu ciudad.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationZipCode">
                         <Form.Label>Código Zip:</Form.Label>
                         <Form.Control type="number" placeholder="Zip" required />
                         <Form.Control.Feedback type="invalid">
-                            Por favor introduce un código postal.
+                            Introduce un código postal.
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Row>
@@ -92,7 +112,7 @@ export default function Checkout() {
                     <Form.Check required label="Acepto los términos y condiciones."
                         feedback="Debes aceptar los términos y condiciones antes de continuar." feedbackType="invalid" />
                 </Form.Group>
-                <Button type="submit" onClick={generateOrder()} className="btn btn-dark position-relative rounded-pill mt-2">
+                <Button type="submit" className="btn btn-dark position-relative rounded-pill mt-2">
                     <span>Finalizar compra</span>
                 </Button>
             </Form>

@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Royal Inferno";
-    src: url(../../assets/royalinferno.ttf);
-  }
+    src: url(../../assets/fonts/royalinferno.ttf);
+}
 
 .logo {
     font-family: "Royal Inferno";
-}  
+}
 
 .NavBar {
     width: 100%;
